@@ -107,7 +107,7 @@ question.2 <- function(.activity) {
 Upon calling this function, we obtain the plot
 and the interval with the highest average number of steps:
 
-```{r}
+```{r, echo=TRUE}
 question.2(activity) 
 ```
 
