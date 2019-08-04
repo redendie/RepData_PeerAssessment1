@@ -126,7 +126,7 @@ and the interval with the highest average number of steps:
 
 
 ```r
-question.2(activity)
+question.2(activity) 
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
