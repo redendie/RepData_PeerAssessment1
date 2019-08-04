@@ -60,7 +60,7 @@ plot an histogram of it, and compute the mean and median value of the total numb
 The instructions are all grouped in the following function:
 
 ```{r}
-daily.count <- function(.activity) {
+question.1 <- function(.activity) {
     activity.daily <- sum_of_steps_by_day(.activity)
     hist(activity.daily$steps, breaks = 20)
     list(mean=mean(activity.daily$steps),
