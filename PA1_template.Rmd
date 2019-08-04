@@ -25,6 +25,18 @@ get.data <- function() {
 activity <- get.data()
 ```
 
+In the rest of the code, I use several times the following functions:
+
+```{r}
+remove_na <- function(A) { A[complete.cases(A), ] }
+
+is.weekday <- function(day) {
+    weekdays(day) %in% c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+}
+```
+
+
+
 
 ## What is mean total number of steps taken per day?
 
