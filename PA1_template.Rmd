@@ -70,8 +70,7 @@ Upon calling this function, we obtain the calculations of the mean and median:
 question.1(activity)
 ```
 
-Again, the reason of creating a function is that this code must be executed twice in the assignment.
-
+The mean number of total steps is 10766.19 and the median number of steps is 10765. These numbers are close.
 
 
 ## What is the average daily activity pattern?
