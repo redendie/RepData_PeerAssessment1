@@ -8,6 +8,22 @@ output:
 
 ## Loading and preprocessing the data
 
+The data exists in the cloned directory, we get the data from a function:
+
+```{r}
+get.data <- function() {
+    zipfile <- "./activity.zip"
+    if (! file.exists("./activity.csv")) {
+      stopifnot(file.exists(zipfile))
+      unzip(zipfile)
+    }
+    activity <- read.delim(file = "./activity.csv", header = TRUE, sep = ",")
+    activity$date <- as.Date(activity$date)
+    activity
+}
+
+activity <- get.data()
+```
 
 
 ## What is mean total number of steps taken per day?
