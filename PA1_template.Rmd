@@ -103,7 +103,13 @@ question.2 <- function(.activity) {
     activity.interval[argmax, "interval"]
 }
 ```
-The tells us that the interval 835 has the highest number of steps on average.
+
+Upon calling this function, we obtain the plot
+and the interval with the highest average number of steps:
+
+```{r}
+question.2(activity)
+```
 
 
 ## Imputing missing values

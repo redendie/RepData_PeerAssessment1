@@ -75,7 +75,7 @@ Upon calling this function, we obtain the calculations of the mean and median:
 question.1(activity)
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 ```
 ## $mean
@@ -120,7 +120,20 @@ question.2 <- function(.activity) {
     activity.interval[argmax, "interval"]
 }
 ```
-The tells us that the interval 835 has the highest number of steps on average.
+
+Upon calling this function, we obtain the plot
+and the interval with the highest average number of steps:
+
+
+```r
+question.2(activity)
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+
+```
+## [1] 835
+```
 
 
 ## Imputing missing values
