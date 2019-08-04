@@ -13,10 +13,7 @@ The data exists in the cloned directory, we get the data from a function:
 ```r
 get.data <- function() {
     zipfile <- "./activity.zip"
-    if (! file.exists("./activity.csv")) {
-      stopifnot(file.exists(zipfile))
-      unzip(zipfile)
-    }
+    if (! file.exists("./activity.csv")) unzip(zipfile)
     activity <- read.delim(file = "./activity.csv", header = TRUE, sep = ",")
     activity$date <- as.Date(activity$date)
     activity
@@ -57,7 +54,7 @@ sum_of_steps_by_day <- function(.activity) {
 }
 ```
 
-To answer, question 1, we must then create the aggregated data set as defined by `sum_of_steps_by_day`,
+To answer Question 1, we must then create the aggregated data set as defined by `sum_of_steps_by_day`,
 plot an histogram of it, and compute the mean and median value of the total number of steps per day.
 The instructions are all grouped in the following function:
 
@@ -78,7 +75,7 @@ Upon calling this function, we obtain the calculations of the mean and median:
 question.1(activity)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
 
 ```
 ## $mean
@@ -88,12 +85,42 @@ question.1(activity)
 ## [1] 10765
 ```
 
-Again, the reason of creating a function is that this code must be executed twice in the assignment.
-
+The mean number of total steps is 10766.19 and the median number of steps is 10765. These numbers are close.
 
 
 ## What is the average daily activity pattern?
 
+In this part, we are grouping by interval ID, and taking the mean value per group.
+Here is function doing that (removing NA's):
+
+
+```r
+mean_of_steps_by_interval <- function(.activity) {
+    activity.no.na <- remove_na(.activity)
+    activity.interval <- aggregate(x = activity.no.na$steps,
+                                   by = list(activity.no.na$interval),
+                                   FUN = mean)
+    colnames(activity.interval)[colnames(activity.interval)=="Group.1"] <- "interval"
+    colnames(activity.interval)[colnames(activity.interval)=="x"] <- "steps"
+    activity.interval
+}
+```
+
+To answer Question 2, we must consider the data set returned by the `mean_of_steps_by_interval`
+and plot a time series for this dataset to obtain an overview of the evolution of the number of steps
+during the day, on average. Also, we need to find the interval with the highest number of steps:
+this is the output of the function
+
+
+```r
+question.2 <- function(.activity) {
+    activity.interval <- mean_of_steps_by_interval(.activity)
+    plot(activity.interval, type="l", xlab="interval", ylab="steps")
+    argmax <- which(activity.interval$steps >= max(activity.interval$steps))
+    activity.interval[argmax, "interval"]
+}
+```
+The tells us that the interval 835 has the highest number of steps on average.
 
 
 ## Imputing missing values
